@@ -17,7 +17,10 @@
     <script>
         document.getElementById('load-contributor').addEventListener('click', async () => {
             try {
-                const response = await fetch('contribution.json');
+                const response = await fetch('contribution.json?v=20261103-72922', { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error('Request failed with status ' + response.status + '.');
+                }
                 const data = await response.json();
                 document.getElementById('contributor-student-id').textContent = 'Contributor Student ID: ' + data.contributorStudentId;
             } catch (error) {
